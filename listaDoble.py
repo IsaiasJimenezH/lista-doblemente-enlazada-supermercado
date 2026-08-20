@@ -1,13 +1,67 @@
+from nodo import Nodo
+
 class ListaDoble:
     def __init__(self):
         self.cabeza = None
         self.cola = None
 
     def ingresar_producto(self, producto):
-        pass
+        if self.buscar_producto(producto.id_producto) is not None:
+            print("Ya existe un producto con ese ID")
+            return False
+
+        nuevo_nodo = Nodo(producto)
+
+        if self.cabeza is None:
+            self.cabeza = nuevo_nodo
+            self.cola = nuevo_nodo
+        else:
+            nuevo_nodo.anterior = nuevo_nodo
+            self.cola.siguiente = nuevo_nodo
+            self.cola = nuevo_nodo
+
+        return True
+
 
     def eliminar_producto(self, id_producto):
-        pass
+        actual = self.cabeza
+
+        while actual is not None:
+            if actual.producto.id_producto == id_producto:
+
+                if actual.anterior is None:
+                    self.cabeza = actual.siguiente
+                else:
+                    actual.anterior.siguiente = actual.siguiente
+
+                if actual.siguiente is None:
+                    self.cola = actual.anterior
+                else:
+                    actual.siguiente.anterior = actual.anterior
+
+                return True
+            actual = actual.siguiente
+
+        return False
 
     def buscar_producto(self, id_producto):
-        pass
+        actual = self.cabeza
+
+        while actual is not None:
+            if actual.producto.id_producto == id_producto:
+                return actual.producto
+
+            actual = actual.siguiente
+
+        return None
+
+    def mostrar_productos(self):
+        if self.cabeza is None:
+            print("No hay productos en la lista")
+            return
+
+        actual = self.cabeza
+
+        while actual is not None:
+            print("-", actual.producto)
+            actual = actual.siguiente
