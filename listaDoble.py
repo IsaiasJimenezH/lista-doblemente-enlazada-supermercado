@@ -1,4 +1,5 @@
 from nodo import Nodo
+import nodo
 
 class ListaDoble:
     def __init__(self):
@@ -16,8 +17,8 @@ class ListaDoble:
             self.cabeza = nuevo_nodo
             self.cola = nuevo_nodo
         else:
-            nuevo_nodo.anterior = nuevo_nodo
             self.cola.siguiente = nuevo_nodo
+            nuevo_nodo.anterior = self.cola
             self.cola = nuevo_nodo
 
         return True
@@ -65,3 +66,9 @@ class ListaDoble:
         while actual is not None:
             print("-", actual.producto)
             actual = actual.siguiente
+
+    def mostrar_productos_recursivo(self, nodo):
+        if nodo is None:
+            return
+        print("-", nodo.producto)
+        self.mostrar_productos_recursivo(nodo.siguiente)

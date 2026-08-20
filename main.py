@@ -36,6 +36,8 @@ def main():
     print("\n LISTA ACTUALIZADA ")
     lista.mostrar_productos()
 
+    print("\n LISTA ACTUALIZADA RECURSIVA ")
+    lista.mostrar_productos_recursivo(lista.cabeza)
 
 
 
