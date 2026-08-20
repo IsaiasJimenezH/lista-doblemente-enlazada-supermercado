@@ -1,3 +1,4 @@
+from colaCompras import ColaCompras
 from producto import Producto
 from listaDoble import ListaDoble
 
@@ -40,6 +41,13 @@ def main():
     lista.mostrar_productos_recursivo(lista.cabeza)
 
 
+    print("Prueba de la cola :")
+
+    cola = ColaCompras()
+    cola.encolar(Producto(3, "Leche", 800, "Costa Rica", 5))
+    cola.encolar(Producto(4, "Pan", 500, "Costa Rica",  20))
+    print("\nCola después de encolar productos:")
+    cola.mostrar_cola() 
 
 if __name__ == "__main__":
     main()
