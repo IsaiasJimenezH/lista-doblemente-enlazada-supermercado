@@ -1,8 +1,4 @@
-class NodoCola:
-    def __init__(self, producto):
-        self.producto = producto
-        self.siguiente = None
-
+from nodoCola import NodoCola
 
 class ColaCompras:
     def __init__(self):

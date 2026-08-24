@@ -1,5 +1,5 @@
 from nodo import Nodo
-import nodo
+from colaCompras import ColaCompras
 
 class ListaDoble:
     def __init__(self):
@@ -8,7 +8,6 @@ class ListaDoble:
 
     def ingresar_producto(self, producto):
         if self.buscar_producto(producto.id_producto) is not None:
-            print("Ya existe un producto con ese ID")
             return False
 
         nuevo_nodo = Nodo(producto)
@@ -72,3 +71,12 @@ class ListaDoble:
             return
         print("-", nodo.producto)
         self.mostrar_productos_recursivo(nodo.siguiente)
+
+    def productos_agotados_a_cola(self):
+        cola_compras = ColaCompras()
+        actual = self.cabeza
+        while actual is not None:
+            if actual.producto.existencias == 0:
+                cola_compras.encolar(actual.producto)
+            actual = actual.siguiente
+        return cola_compras
