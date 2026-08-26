@@ -66,11 +66,20 @@ class ListaDoble:
             print("-", actual.producto)
             actual = actual.siguiente
 
-    def mostrar_productos_recursivo(self, nodo):
+    def mostrar_productos_recursivo(self, nodo=None):
+        if nodo is None:
+            nodo = self.cabeza
+            if nodo is None:
+                print("No hay productos en la lista")
+                return
+
+        self._mostrar_desde_nodo(nodo)
+
+    def _mostrar_desde_nodo(self, nodo):
         if nodo is None:
             return
         print("-", nodo.producto)
-        self.mostrar_productos_recursivo(nodo.siguiente)
+        self._mostrar_desde_nodo(nodo.siguiente)
 
     def productos_agotados_a_cola(self):
         cola_compras = ColaCompras()
